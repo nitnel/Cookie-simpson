@@ -12,7 +12,7 @@ let multiplicateurCost = 50;
 let autoclickerActive = false;
 let autoclickerCost = 500;
 let bonusActive = false;
-let bonusCost = 5000;
+let bonusCost = 1000;
 let bonusDuration = 30;
 let bonusTimer = null;
 let clicksRequiredForMultiplier = 10; // Nombre de clics requis pour activer les multiplicateurs
@@ -29,13 +29,13 @@ bouton.addEventListener("click", () => {
     display.textContent = score;
     
     // Vérification si les améliorations doivent être activées
-    if (score >= clicksRequiredForMultiplier && !multiplierBtn.disabled) {
+    if (score >= clicksRequiredForMultiplier && multiplierBtn.disabled) {
         multiplierBtn.disabled = false; // Active le bouton des multiplicateurs
     }
-    if (score >= clicksRequiredForAutoclicker && !autoclicBtn.disabled) {
+    if (score >= clicksRequiredForAutoclicker && autoclicBtn.disabled) {
         autoclicBtn.disabled = false; // Active le bouton du clic automatique
     }
-    if (score >= clicksRequiredForBonus && !bonusBtn.disabled) {
+    if (score >= clicksRequiredForBonus && bonusBtn.disabled) {
         bonusBtn.disabled = false; // Active le bouton du bonus
     }
 });

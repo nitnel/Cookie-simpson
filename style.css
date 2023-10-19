@@ -14,6 +14,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url('https://fond-ecran-hd.net/Public/uploads/2019-07-23/thumbs-1/fondycranhdthesimpsons.png');
+    background-position: center center;
+    background-size: cover;
 }
 
 /* Styles pour les boutons */
