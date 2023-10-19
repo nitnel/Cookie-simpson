@@ -34,8 +34,6 @@ return authors.map(function(author) {
 .catch(function(error) {
 console.log(error);
 });
-const url = 'https://randomuser.me/api';
-
 let data = {
   name: 'Sara'
 }
