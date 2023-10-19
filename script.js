@@ -8,11 +8,11 @@ const bonusBtn = document.getElementById("bonus");
 // Initialisation des variables
 let score = 0;
 let multiplicateur = 1;
-let multiplicateurCost = 50;
+let multiplicateurCost = 20;
 let autoclickerActive = false;
-let autoclickerCost = 500;
+let autoclickerCost = 75;
 let bonusActive = false;
-let bonusCost = 1000;
+let bonusCost = 100;
 let bonusDuration = 30;
 let bonusTimer = null;
 let clicksRequiredForMultiplier = 10; // Nombre de clics requis pour activer les multiplicateurs
@@ -45,7 +45,7 @@ function augmenterMultiplicateur() {
     if (score >= multiplicateurCost) {
         score -= multiplicateurCost;
         multiplicateur++;
-        multiplicateurCost = Math.pow(2, multiplicateur) * 50;
+        multiplicateurCost = Math.pow(1, multiplicateur) * 50;
         display.textContent = score;
         updateMultiplierButton();
     }
@@ -58,11 +58,11 @@ function updateMultiplierButton() {
 
 // Fonction pour activer le clic automatique
 function startAutoclick() {
-    if (score >= autoclickerCost && !autoclickerActive) {
-        autoclickerActive = true;
+    if ( autoclickerActive) {
+        
         autoclicBtn.disabled = true; // Désactive le bouton d'achat du clic automatique
         setInterval(() => {
-            bouton.click(); // Simule un clic sur le bouton principal
+            bouton.click(1); // Simule un clic sur le bouton principal
         }, 1000); // Déclenche le clic automatique toutes les secondes
     }
 }
@@ -71,7 +71,8 @@ function startAutoclick() {
 function buyAutoclicker() {
     if (score >= autoclickerCost) {
         score -= autoclickerCost;
-        autoclickerCost = 0; // Le coût du clic automatique devient 0 une fois acheté
+        autoclickerActive = true;
+        autoclickerCost = 20; // Le coût du clic automatique devient 0 une fois acheté
         updateAutoclicButton();
         startAutoclick();
     }
@@ -84,7 +85,7 @@ function updateAutoclicButton() {
 
 // Fonction pour activer le bonus
 function startBonus() {
-    if (score >= bonusCost && !bonusActive) {
+    if (score >= bonusCost && bonusActive) {
         bonusActive = true;
         bonusBtn.textContent = `Bonus (${bonusDuration}s)`; // Affiche le temps restant du bonus dans le bouton
         bonusBtn.disabled = true; // Désactive le bouton d'achat du bonus
@@ -107,7 +108,7 @@ function updateButtonsState() {
 // Écouteurs d'événements pour les boutons
 multiplierBtn.addEventListener("click", augmenterMultiplicateur);
 bonusBtn.addEventListener("click", startBonus);
-
+autoclicBtn.addEventListener("click", buyAutoclicker);
 // Met à jour l'état des boutons au chargement de la page
 updateMultiplierButton();
 updateAutoclicButton();
