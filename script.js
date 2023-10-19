@@ -85,7 +85,8 @@ function updateAutoclicButton() {
 
 // Fonction pour activer le bonus
 function startBonus() {
-    if (score >= bonusCost && bonusActive) {
+    if (score >= bonusCost ) {
+        bonusActive
         bonusActive = true;
         bonusBtn.textContent = `Bonus (${bonusDuration}s)`; // Affiche le temps restant du bonus dans le bouton
         bonusBtn.disabled = true; // Désactive le bouton d'achat du bonus
