@@ -1,49 +1,55 @@
-const fs = require('fs');
+fetch("./data.json").then(res=>res.json())
+.then(function() {
 
-const newUser = {
-  id: 3,
-  username: 'utilisateur3',
-  email: 'utilisateur3@example.com'
-};
+})
+.catch(function() {
 
-// Charger les données existantes depuis le fichier JSON
-fs.readFile('data.json', 'utf8', (err, data) => {
-  if (err) {
-    console.error("Erreur de lecture du fichier JSON :", err);
-    return;
-  }
-
-  let jsonData = JSON.parse(data);
-
-  // Ajouter un nouvel utilisateur
-  jsonData.users.push(newUser);
-
-  // Enregistrer les données mises à jour dans le fichier JSON
-  fs.writeFile('data.json', JSON.stringify(jsonData, null, 2), 'utf8', (err) => {
-    if (err) {
-      console.error("Erreur d'écriture dans le fichier JSON :", err);
-      return;
-    }
-
-    console.log("Nouvel utilisateur ajouté avec succès !");
-  });
 });
-const fs = require('fs');
+function createNode(element) {
+  return document.createElement(element);
+}
 
-// Lire les données depuis le fichier JSON
-fs.readFile('data.json', 'utf8', (err, data) => {
-  if (err) {
-    console.error("Erreur de lecture du fichier JSON :", err);
-    return;
-  }
-  try {
-    const jsonData = JSON.parse(data);
+function append(parent, el) {
+return parent.appendChild(el);
+}
 
-    // Accéder aux utilisateurs
-    const users = jsonData.users;
-    console.log(users);
-  } catch (parseError) {
-    console.error("Erreur d'analyse du JSON :", parseError);
-  }
+const ul = document.getElementById('authors');
+const url = 'https://randomuser.me/api/?results=10';
+
+fetch("./data.json")
+.then((resp) => resp.json())
+.then(function(data) {
+let authors = data.results;
+return authors.map(function(author) {
+  let li = createNode('li');
+  let img = createNode('img');
+  let span = createNode('span');
+  img.src = author.picture.medium;
+  span.innerHTML = `${author.name.first} ${author.name.last}`;
+  append(li, img);
+  append(li, span);
+  append(ul, li);
+})
+})
+.catch(function(error) {
+console.log(error);
 });
+const url = 'https://randomuser.me/api';
+
+let data = {
+  name: 'Sara'
+}
+
+var request = new Request(url, {
+	method: 'POST',
+	body: data,
+	headers: new Headers()
+});
+
+fetch(request)
+.then(function() {
+    // Gérer la réponse reçu de l'API
+})
+
+
 
